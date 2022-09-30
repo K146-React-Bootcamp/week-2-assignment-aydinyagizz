@@ -1,0 +1,108 @@
+HTTP - Fetch Api Ödevi;
+
+  HTTP Status;
+
+    100 -> Continue->Devam
+    101 -> Switching Protocols -> Anahtarlama Protokolü
+    102	-> Processing -> İşlem
+
+    200 ->	OK ->	Tamam
+    201 ->	Created ->	Oluşturuldu
+    202 ->	Accepted ->	Onaylandı
+    203 ->	Non-Authoritative Information ->	Yetersiz Bilgi
+    204 ->	No Content ->	İçerik Yok
+    205 ->	Reset Content ->	İçeriği Baştan al
+    206 ->	Partial Content ->	Kısmi İçerik
+    207 ->	Multi-Status -> Çok-Statü
+    210 ->	Content Different	-> Farklı İçerik
+
+    300 ->	Multiple Choices ->	Çok Seçenek
+    301 ->	Moved Permanently ->	Kalıcı Taşındı
+    302 ->	Moved Temporarily ->	Geçici Taşındı
+    303 ->	See Other ->	Diğerlerine Bak
+    304 ->	Not Modified ->	Güncellenmedi
+    305 ->	Use Proxy ->	Proxy Kullan
+    307 ->	Temporary Redirect ->	Geçici olarak yeniden gönder
+
+    400 ->	Bad Request ->	Kötü İstek
+    401 ->	Unauthorized ->	Yetkisiz
+    402 ->	Payment Required ->	Ödeme Gerekli
+    403 ->	Forbidden ->	Yasaklandı
+    404 ->	Not Found ->	Sayfa Bulunamadı
+    405 ->	Method Not Allowed ->	İzin verilmeyen Metod
+    406 ->	Not Acceptable ->	Kabul Edilemez
+    407 ->	Proxy Sunucusuna giriş yapmak gerekli	
+    408 ->	İstek zaman aşamına uğradı	
+    409 ->	Conflict ->	(Hatlar) Çakıştı,Çakışma
+    410 ->	Gone
+    411 ->	Length Required	
+    412 ->	Precondition Failed	
+    413 ->	Request Entity Too Large	
+    414 ->	Request-URI Too Long	
+    415 ->	Unsupported Media Type ->	Desteklenmeyen medya türü
+    416 ->	Requested range unsatifiable	
+    417 ->	Expectation failed	
+    422 ->	Unprocessable entity	:
+    423 ->	Locked	
+    424 ->	Method failure	
+    451 ->	Unavailable For Legal Reasons ->	Yasal nedenlerle gösterilemiyor
+
+    500 ->	Internal Server Error	
+    501 ->	Uygulanmamış	
+    502 ->	Geçersiz Ağ Geçidi	
+    503 ->	Hizmet Yok	
+    504 ->	Gateway Timeout	
+    505 ->	HTTP Version not supported ->	HTTP versiyonu desteklenmiyor
+    507 ->	Insufficient storage	
+
+  HTTP Request'in metodlari nelerdir?
+  
+  
+    1-) GET:GET metodu ile sorgu metinleri URL içinde gönderilebilir. 
+    Bunun en önemli faydası kullanıcıların bookmark edebilmeleri ve aynı sorguyu içeren istekleri daha sonra gönderebilmelerini 
+    sağlaması ve tarayıcıda önceki sorguların “geri” tuşu ile veya tarayıcı geçmişinden çağrılarak aynı sayfalara ulaşabilmeleridir.
+    Güvenlik açısından URL’lerin ekranda görüntüleniyor olması ve URL’in hedefine ulaşıncaya kadar ve hedef sunucu üzerinde iz kayıtlarında 
+    görülebilmesi gönderilen parametrelerin gizlilik ihtiyacı varsa sıkıntı yaratabilir. Bu nedenlerle hassas isteklerin GET ile gönderilmemelidir.
+
+    2-)POST: Bu metod ile sunucuya veri yazdırabilirsiniz. Bu metodla istek parametreleri hem URL içinde hem de mesaj gövdesinde gönderilebilir. 
+    Sadece mesaj gövdesinin kullanımı yukarıda sayılan riskleri engelleyecektir. Tarayıcılar geri butonuna basıldığında POST isteğinin mesaj 
+    gövdesinde yer alan parametreleri tekrar göndermek isteyip istemedimizi sorarlar. Bunun temel nedeni bir işlemi yanlışlıkla birden fazla yapmayı engellemektir. 
+    Bu özellik ve de güvenlik gerekçeleriyle bir işlem gerçekleştirileceğinde POST metodunun kullanılması önerilir.
+
+    3-)PUT: Bu metod ile servis sağlayıcı üzerindeki bir kaynağı güncelleyebilirsiniz. Hangi kaynağı güncelleyecekseniz o kaynağın id’sini göndermek zorunludur.
+
+    4-)HEAD: GET metoduyla benzer işleve sahiptir ancak geri dönen yanıtta mesaj gövdesi bulunmaz (yani başlıklar ve içerikleri GET metoduyla aynıdır). 
+    Bu nedenle GET mesajı gönderilmeden önce bir kaynağın var olup olmadığını kontrol etmek için kullanılabilir.
+
+    5-)DELETE: Bu metod ile sunucudaki herhangi bir veriyi silebilirsiniz.
+
+    6-)CONNECT: Bir proxy sunucu üzerinden başka bir sunucuya bağlanmak ve proxy sunucuyu bir tünel gibi kullanmak için kullanılır.
+
+    7-)OPTIONS: Bu metod belli bir kaynak için kullanılabilecek HTTP metodlarını sunucudan sorgulamak için kullanılır.
+
+    8-)TRACE: Teşhis amaçlı kullanılan bir metoddur. Sunucu bu metodla gelen istek mesajının içeriğini aynen yanıt gövdesinde geri göndermelidir. 
+    Bu yöntemle sunucu ile istemci arasında bir vekil sunucu varsa bu sunucunun ve yaptığı değişikliklerin tespiti mümkün olabilir.
+
+    9-)PATCH: Bu metod bir kaynağa istediğiniz küçük çaplı değişimi yapmanızı sağlar.
+
+    10-)SEARCH: Bir dizinin altındaki kaynakları sorgulamak için kullanılır.
+   
+  Fetch API'nin metodlari ile örnekleri;
+  
+    Fetch API, kaynakları (ağ genelinde dahil) getirilmesine yönelik basit bir arayüzdür. Ajax yerine alternatif olarak asenkron veri alıp ve 
+    veri göndermemizi sağlar. Promise tabanlı olduğu için async bir yapıdır. Promise ES6 ile gelen bir özelliktir. Callback fonksiyonlarının yerine 
+    kullanabiliyoruz. Fetch API'da promise yapısını kullanarak bizim Ajax'ın yerine kullanabileceğimiz bir yapı sunuyor. Ayrıca Fetch API window objesi 
+    ile birlikte geliyor. Eğer window objesini konsolda yazdırırsak bu window objesinin altında fetch metodunu görebilirsiniz.
+    
+    *fetch(), bu yöntem bir kaynak almak için kullanılır.
+    *Headers, response/request başlıklarını temsil ederek bunları sorgulamanıza ve sonuçlara bağlı olarak farklı eylemler gerçekleştirmenize olanak tanır.
+    *Request , bir kaynak talebini temsil eder.
+    *Response, bir isteğe verilen yanıtı temsil eder.
+    
+    Örnek;
+    
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response)=>response.json())
+    .then((json)=>console.log(json))
+    .catch((err)=>console.log(err));
+
